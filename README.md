@@ -1,4 +1,4 @@
-## Zoho Invoice Testing Automation
+## Zoho Tests Selenium
  - [Introduction](#introduction)
  - [Technologies Used](#technologies-used)
  - [Project Structure](#project-structure)
