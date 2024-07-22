@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using Zoho.Tests.Selenium.Pages;
 
 namespace Zoho.Tests.Selenium.Tests.Customers
@@ -12,12 +11,7 @@ namespace Zoho.Tests.Selenium.Tests.Customers
         [SetUp]
         public void SetUp()
         {
-            var options = new ChromeOptions();
-            string folderPathToStoreSession = TestConfigurations.GetSessionLocation();
-            options.AddArgument("--user-data-dir=" + folderPathToStoreSession);
-
-            driver = new ChromeDriver(options);
-            driver.Manage().Window.Maximize();
+            driver = DriverFactory.CreateDriver();
         }
 
         public void CleanUp(string companyName)
