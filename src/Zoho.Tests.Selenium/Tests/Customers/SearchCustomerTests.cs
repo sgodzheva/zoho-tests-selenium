@@ -49,7 +49,7 @@ namespace Zoho.Tests.Selenium.Tests.Customers
         }
 
         [TearDown]
-        public void CleanupAfterEveryTest()
+        public void TearDown()
         {
             driver.Quit();
             driver.Dispose();

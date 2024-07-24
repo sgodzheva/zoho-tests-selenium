@@ -25,7 +25,7 @@ namespace Zoho.Tests.Selenium.Tests.Quotes
         [TestCase("Hasse", "Mikaelsson", "Mikaelsson, Hasse", "Volume Testing Services", 240.75, 0, 240.75)]
         [TestCase("Gertrud", "Solberg", "Solberg, Gertrud", "Penetration Testing Services", 240.75, 99, 2.41)]
         [TestCase("Folke", "Larson", "Larson, Folke", "Load Testing Services", 240.75, 100, 0)]
-        [TestCase("Kristin", "Bergman", "Bergman, Kristin", "regression Testing Services", 240.75, -5, 240.75)]
+        [TestCase("Kristin", "Bergman", "Bergman, Kristin", "Regression Testing Services", 240.75, -5, 240.75)]
         public void TestDiscountedQuoteCreation(string firstName, string lastName, string displayName, string itemName, double price, double discount, double expectedPrice)
         {
             customersAutomation.CreateCustomer(firstName, lastName, displayName);
@@ -70,7 +70,7 @@ namespace Zoho.Tests.Selenium.Tests.Quotes
         }
 
         [TearDown]
-        public void CleanAfterEveryTest()
+        public void TearDown()
         {
             driver.Quit();
             driver.Dispose();

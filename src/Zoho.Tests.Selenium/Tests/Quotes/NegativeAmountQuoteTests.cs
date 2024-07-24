@@ -44,7 +44,7 @@ namespace Zoho.Tests.Selenium.Tests.Quotes
         }
 
         [TearDown]
-        public void ClearAfterEveryTest()
+        public void TearDown()
         {
             driver.Quit();
             driver.Dispose();

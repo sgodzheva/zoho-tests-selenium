@@ -25,7 +25,7 @@ namespace Zoho.Tests.Selenium.Tests
         }
 
         [TearDown]
-        public void CleanupAfterEveryTest()
+        public void TearDown()
         {
             driver.Quit();
             driver.Dispose();
