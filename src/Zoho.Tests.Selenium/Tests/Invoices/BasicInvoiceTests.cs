@@ -5,7 +5,7 @@ using Zoho.Tests.Selenium.Pages;
 
 namespace Zoho.Tests.Selenium.Tests.Invoices
 {
-    public class BasicInvoiceTest
+    public class BasicInvoiceTests
     {
         private IWebDriver driver;
         private CustomersAutomation customersAutomation;

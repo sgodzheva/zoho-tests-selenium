@@ -3,7 +3,7 @@ using SeleniumExtras.WaitHelpers;
 
 namespace Zoho.Tests.Selenium.Pages
 {
-    public class NewQuotePage : ZohoPage
+    public class NewQuotePage : Page
     {
         private IWebDriver driver;
 

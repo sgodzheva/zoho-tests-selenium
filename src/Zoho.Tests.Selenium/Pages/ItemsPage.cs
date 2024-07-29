@@ -4,7 +4,7 @@ using SeleniumExtras.WaitHelpers;
 
 namespace Zoho.Tests.Selenium.Pages
 {
-    public class ItemsPage : ZohoPage
+    public class ItemsPage : Page
     {
         private IWebDriver driver;
 
