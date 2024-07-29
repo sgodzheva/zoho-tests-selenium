@@ -36,5 +36,10 @@
         {
             return $"https://invoice.zohocloud.ca/app/{GetAccountNumber()}{path}";
         }
+
+        public static string GetPreferredBrowser()
+        {
+            return ReadEnvironmentVariable("ZOHO_TESTS_BROWSER");
+        }
     }
 }
