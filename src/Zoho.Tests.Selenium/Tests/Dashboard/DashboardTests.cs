@@ -1,27 +1,30 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
 using Zoho.Tests.Selenium.Pages;
 
-namespace Zoho.Tests.Selenium.Tests
+namespace Zoho.Tests.Selenium.Tests.LandingPage
 {
-    public class HomePageSmokeTest
+    public class DashboardTests
     {
         private IWebDriver driver;
 
         [SetUp]
         public void Setup()
         {
-            driver = new ChromeDriver();
+            driver = new EdgeDriver();
             driver.Manage().Window.Maximize();
         }
 
         [Test]
-        public void OpenHomePage()
+        public void OpenDashboard()
         {
-            HomePage homePage = new HomePage(driver);
-            homePage.Open();
+            DashboardPage dashboardPage = new DashboardPage(driver);
+            dashboardPage.Open();
             Assert.That(driver.Title, Is.EqualTo("Dashboard | Zoho Invoice"));
+
+            Assert.That(dashboardPage.IsActiveSidebarButton("Home"), Is.True);
+            Assert.That(dashboardPage.IsActiveTab("dashboard"), Is.True);
         }
 
         [TearDown]

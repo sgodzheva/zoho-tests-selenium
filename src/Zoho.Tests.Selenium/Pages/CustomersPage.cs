@@ -45,7 +45,7 @@ namespace Zoho.Tests.Selenium.Pages
 
         public string GetActiveTabName()
         {
-            By xPath = By.XPath("//div[@class='list-primary']/div[@class='name']/span[contains(@class,'active')]");
+            By xPath = By.XPath("//div[@class='list-primary']/div/div[@class='name']/span[contains(@class,'active')]");
             Func<IWebDriver, IWebElement> findCustomerTab = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement customerTab = Wait.Until(findCustomerTab);
             return customerTab.Text;

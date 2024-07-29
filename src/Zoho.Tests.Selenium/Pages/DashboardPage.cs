@@ -1,12 +1,13 @@
 ﻿using OpenQA.Selenium;
+using SeleniumExtras.WaitHelpers;
 
 namespace Zoho.Tests.Selenium.Pages
 {
-    public class HomePage : ZohoPage
+    public class DashboardPage : Page
     {
         private IWebDriver driver;
 
-        public HomePage(IWebDriver driver) : base(driver)
+        public DashboardPage(IWebDriver driver) : base(driver)
         {
             this.driver = driver;
         }
@@ -45,6 +46,24 @@ namespace Zoho.Tests.Selenium.Pages
             quotesButton.Click();
             QuotesPage quotesPage = new QuotesPage(driver);
             return quotesPage;
+        }
+
+        public bool IsActiveSidebarButton(string buttonName)
+        {
+            By xPath = By.XPath($"//a[contains(@class,'nav-link' ) and text()='{buttonName}']");
+            Func<IWebDriver, IWebElement> findActiveButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement activeButton = Wait.Until(findActiveButton);
+            return activeButton.GetAttribute("class").Contains("active");
+        }
+
+        public bool IsActiveTab(string tabName)
+        {
+            string screenTab = $"#/home/{tabName}";
+            By xPath = By.XPath($"//a[contains(@class,'nav-link' ) and @href='{screenTab}']");
+            Func<IWebDriver, IWebElement> findActiveTab = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement activeTab = Wait.Until(findActiveTab);
+
+            return activeTab.GetAttribute("class").Contains("active");
         }
     }
 }
