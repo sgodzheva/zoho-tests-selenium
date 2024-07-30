@@ -12,6 +12,22 @@ namespace Zoho.Tests.Selenium.Pages
             this.driver = driver;
         }
 
+        public void Open()
+        {
+            INavigation navigation = driver.Navigate();
+            navigation.GoToUrl("https://www.zoho.com/ca/invoice/");
+            Func<IWebDriver, IWebElement> check = ExpectedConditions.ElementIsVisible(By.TagName("body"));
+            Wait.Until(check);
+        }
+
+        public void ClickFirstSignInButton()
+        {
+            By xPath = By.XPath("//a[@class='zgh-login' and text()='Sign In']");
+            Func<IWebDriver, IWebElement> findSignInButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement signInButton = Wait.Until(findSignInButton);
+            signInButton.Click();
+        }
+
         public void PopulateUsername(string username)
         {
             IWebElement emailField = Wait.Until(d => d.FindElement(By.Id("login_id")));
