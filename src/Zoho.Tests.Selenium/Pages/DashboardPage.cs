@@ -65,5 +65,23 @@ namespace Zoho.Tests.Selenium.Pages
 
             return activeTab.GetAttribute("class").Contains("active");
         }
+
+        public void ClickProfileIcon()
+        {
+            By xpath = By.XPath("//div[@id='profile-section']//img");
+            Func<IWebDriver, IWebElement> findProfileIcon = ExpectedConditions.ElementIsVisible(xpath);
+            IWebElement profileIcon = Wait.Until(findProfileIcon);
+            profileIcon.Click();
+        }
+
+        public SignOutPage ClickSignOutButton()
+        {
+            By xPath = By.XPath("//a[@class='signout']");
+            Func<IWebDriver, IWebElement> findSignOutButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement signOutButton = Wait.Until(findSignOutButton);
+            signOutButton.Click();
+
+            return new SignOutPage(driver);
+        }
     }
 }
