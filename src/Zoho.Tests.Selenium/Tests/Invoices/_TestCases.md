@@ -32,7 +32,7 @@ Test Case Steps:
 - Select the "Use Simplified View" radio button
 - Choose a customer from the "Customer Name" drop-down menu (e.g. "Olander, Gottfrid")
 - Choose the option "Due on Receipt" from the "Terms" drop-down
-- Choose more than one item from the drop-down menu, by clicking in the "Item Details" text field (e.g. "A/B Testing Services, Rate:$200.00")
+- Choose more than one item from the drop-down menu, by clicking in the "Item Details" text field (e.g. "A/B Testing Services 1, Rate:$200.00" & "A/B Testing Services 2, Rate:$200.00")
 - Click on the "Save as Draft" button
 
 Expected Results:
