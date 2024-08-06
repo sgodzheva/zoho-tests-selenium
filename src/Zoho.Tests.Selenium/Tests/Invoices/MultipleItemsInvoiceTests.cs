@@ -5,7 +5,7 @@ using Zoho.Tests.Selenium.Pages;
 
 namespace Zoho.Tests.Selenium.Tests.Invoices
 {
-    public class BasicInvoiceTests
+    public class MultipleItemsInvoiceTests
     {
         private IWebDriver driver;
         private CustomersAutomation customersAutomation;
@@ -15,17 +15,19 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
         public void SetUp()
         {
             driver = DriverFactory.CreateDriver();
-
             customersAutomation = new CustomersAutomation(driver);
-
             itemsAutomation = new ItemsAutomation(driver);
         }
 
-        [TestCase("Fredrik", "Bergfalk", "Bergfalk, Fredrik", "Exploratory Testing Services", 140, "Due on Receipt")]
-        public void TestBasicInvoiceCreation(string firstName, string lastName, string displayName, string itemName, double price, string terms)
+        [TestCase("Gottfrid", "Olander", "Olander, Gottfrid", "Due on Receipt", "A/B Testing Services", 200, 2, 400)]
+        public void TestInvoiceWithMultipleItems(string firstName, string lastName, string displayName, string terms, string itemName, double price, int itemsNumber, double expectedTotal)
         {
             customersAutomation.CreateCustomer(firstName, lastName, displayName);
-            itemsAutomation.CreateItem(itemName, price, ItemType.Service);
+
+            for (int i = 1; i <= itemsNumber; i++)
+            {
+                itemsAutomation.CreateItem($"{itemName} {i}", price, ItemType.Service);
+            }
 
             InvoicesPage invoicesPage = new InvoicesPage(driver);
             invoicesPage.Open();
@@ -40,9 +42,16 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
 
             newInvoicePage.SelectTerms(terms);
 
-            DateTime dueDate = newInvoicePage.GetInvoiceDueDate();
+            DateTime dueDate = newInvoicePage.GetInvoiceDate();
 
-            newInvoicePage.SelectItem(itemName);
+            for (int i = 1; i <= itemsNumber; i++)
+            {
+                newInvoicePage.SelectItem($"{itemName} {i}");
+            }
+
+            double total = newInvoicePage.GetTotal();
+            Assert.That(total, Is.EqualTo(expectedTotal));
+
             newInvoicePage.SaveAsDraft();
 
             string invoiceTitleID = invoicesPage.GetSelectedInvoiceID();
@@ -57,23 +66,26 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
             DateTime selectedDueDate = invoicesPage.GetSelectedDueDate();
             Assert.That(selectedDueDate, Is.EqualTo(dueDate));
 
-            string customername = invoicesPage.GetCustomerName();
-            Assert.That(customername, Is.EqualTo(displayName));
+            string customerName = invoicesPage.GetCustomerName();
+            Assert.That(customerName, Is.EqualTo(displayName));
 
-            string lineItemName = invoicesPage.GetLineItemName(1);
-            Assert.That(lineItemName, Is.EqualTo(itemName));
+            for (int i = 1; i <= itemsNumber; i++)
+            {
+                string lineItemName = invoicesPage.GetLineItemName(i);
+                Assert.That(lineItemName, Is.EqualTo($"{itemName} {i}"));
 
-            double lineItemQuantity = invoicesPage.GetLineItemQuantity(1);
-            Assert.That(lineItemQuantity, Is.EqualTo(1));
+                double lineItemQuantity = invoicesPage.GetLineItemQuantity(i);
+                Assert.That(lineItemQuantity, Is.EqualTo(1));
+            }
 
             double invoiceSubtotal = invoicesPage.GetInvoiceSubTotal();
-            Assert.That(invoiceSubtotal, Is.EqualTo(price));
+            Assert.That(invoiceSubtotal, Is.EqualTo(expectedTotal));
 
             double invoiceTotal = invoicesPage.GetInvoiceTotal();
-            Assert.That(invoiceTotal, Is.EqualTo(price));
+            Assert.That(invoiceTotal, Is.EqualTo(expectedTotal));
 
             double invoiceBalanceDue = invoicesPage.GetBalanceDue();
-            Assert.That(invoiceBalanceDue, Is.EqualTo(price));
+            Assert.That(invoiceBalanceDue, Is.EqualTo(expectedTotal));
         }
 
         [TearDown]

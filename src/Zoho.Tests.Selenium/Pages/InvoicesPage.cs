@@ -21,6 +21,10 @@ namespace Zoho.Tests.Selenium.Pages
             Wait.Until(check);
 
             SignIn();
+
+            By headingXPath = By.XPath("//span[text()='All Invoices']");
+            Func<IWebDriver, IWebElement> findPageHeading = ExpectedConditions.ElementIsVisible(headingXPath);
+            Wait.Until(findPageHeading);
         }
 
         public NewInvoicePage AddNewInvoice()
@@ -53,7 +57,7 @@ namespace Zoho.Tests.Selenium.Pages
             return parsedInvoiceDate;
         }
 
-        public string GetSelectedInvoiceTerms()
+        public string GetSelectedTerms()
         {
             By xPath = By.XPath("//span[@id='tmp_payment_terms']");
             Func<IWebDriver, IWebElement> findInvoiceTerms = ExpectedConditions.ElementIsVisible(xPath);
@@ -61,7 +65,7 @@ namespace Zoho.Tests.Selenium.Pages
             return invoiceTerms.Text;
         }
 
-        public DateTime GetSelectedInvoiceDueDate()
+        public DateTime GetSelectedDueDate()
         {
             By xPath = By.XPath("//span[@id='tmp_due_date']");
             Func<IWebDriver, IWebElement> findInvoiceDueDate = ExpectedConditions.ElementIsVisible(xPath);

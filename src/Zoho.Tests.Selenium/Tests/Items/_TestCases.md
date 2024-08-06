@@ -1,4 +1,4 @@
-﻿## TC-4 Test the item creation of type "Goods" 
+﻿## TC-1 Test the item creation of type "Goods" 
 Precondition: The user has an account and is logged in.
 
 Test Case Steps:
@@ -17,7 +17,7 @@ The "Item Type" should be "Sales Items".
 The "Selling Price" should match the item's price.
 
 
-## TC-5 Test the item creation of type "Service"
+## TC-2 Test the item creation of type "Service"
 Precondition: The user has an account and is logged in.
 
 Test Case Steps:

@@ -1,4 +1,4 @@
-﻿## TC-6 Test a quote creation, by populating the most essential fields and using the simplified view
+﻿## TC-1 Test a quote creation, by populating the most essential fields and using the simplified view
 Preconditions:
 The user has an account and is logged in.
 There should be an already created customer("Individual") and an item("Service").
@@ -18,7 +18,7 @@ The customer name under "Bill to" should match the selected name during the crea
 The "Sub Total" and "Total" amounts should be calculated correctly.
 
   
-## TC-7 Test a quote creation, with a discounted item from type "Service", using the simplified view
+## TC-2 Test a quote creation, with a discounted item from type "Service", using the simplified view
 Preconditions:
 The user has an account and is logged in.
 There should be an already created customer("Individual") and an item("Service").
@@ -48,7 +48,7 @@ Execute the test case with discounts:
 - "-5%" => Negative discount number should be ignored and the quote should be saved as if there is no discount.
 
 
-## TC-8 Test a basic quote creation with an item with a negative "Selling Price"
+## TC-3 Test a basic quote creation with an item with a negative "Selling Price"
 Preconditions:
 The user has an account and is logged in. 
 There should be an already created customer("Individual") and an item("Service") with a negative "Selling Price".
@@ -65,7 +65,7 @@ Expected Result:
 The user should not be able to save the quote.
 An error message should appear at the top of the screen stating: "Please ensure that the total amount is greater than or equal to zero."
 
-## TC-9 Test a quote creation with shipping charges
+## TC-4 Test a quote creation with shipping charges
 Preconditions: 
 The user has an account and is logged in.
 There should be an already created customer("Individual") and an item("Goods").

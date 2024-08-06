@@ -96,6 +96,14 @@ namespace Zoho.Tests.Selenium.Pages
             IWebElement nextLineItem = Wait.Until(findNextLineItem);
         }
 
+        public double GetTotal()
+        {
+            By xPath = By.XPath("//div[text()='Total']/following-sibling::div[contains(@class,'total-amount')]");
+            Func<IWebDriver, IWebElement> findTotal = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement total = Wait.Until(findTotal);
+
+            return double.Parse(total.Text);
+        }
         public void SaveAsDraft()
         {
             IWebElement saveAsDraftButton = driver.FindElement(By.XPath("//button[text()='Save as Draft']"));

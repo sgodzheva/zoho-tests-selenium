@@ -1,4 +1,4 @@
-﻿## TC-11 Test opening the dashboard page with the signed in user.
+﻿## TC-1 Test opening the dashboard page with the signed in user.
 Precondition: The user is signed in.
 
 Test Case Steps:
@@ -9,7 +9,7 @@ The user should be redirected to the "Zoho Invoice" home page.
 The "Home" button from the sidebar navigation menu should be active and the "Dashboard" tab on the screen should be underlined.
 The page title should be "Dashboard | Zoho Invoice"
 
-## TC-12 Test the "Sign in" functionality with valid credentials
+## TC-2 Test the "Sign in" functionality with valid credentials
 Precondition: The user needs to be registered.
 
 Test Case Steps:
@@ -23,7 +23,7 @@ Test Case Steps:
 Expected Result:
 The user should be redirected to the "Zoho Invoice" dashboard page.
 
-## TC-13 Test the "Sign out" functionality.
+## TC-3 Test the "Sign out" functionality.
 Precondition: The user has an account and is logged in.
 
 Test Case Steps:
