@@ -37,7 +37,6 @@ namespace Zoho.Tests.Selenium.Tests.LandingPage
         [TearDown]
         public void TearDown()
         {
-            driver.Quit();
             driver.Dispose();
         }
     }

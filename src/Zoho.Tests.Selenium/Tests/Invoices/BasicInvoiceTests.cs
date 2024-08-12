@@ -79,7 +79,6 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
         [TearDown]
         public void TearDown()
         {
-            driver.Quit();
             driver.Dispose();
         }
     }
