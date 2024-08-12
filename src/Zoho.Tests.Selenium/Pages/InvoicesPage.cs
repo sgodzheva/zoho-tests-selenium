@@ -125,5 +125,13 @@ namespace Zoho.Tests.Selenium.Pages
             string trimmedBalanceDue = balanceDue.Text.TrimStart('$'); //remove leading dollar sign
             return double.Parse(trimmedBalanceDue);
         }
+
+        public bool IsNewInvoiceButtonVisible()
+        {
+            By xPath = By.XPath("//button[text()='New']");
+            Func<IWebDriver, IWebElement> findNewInvoiceButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement newInvoiceButton = Wait.Until(findNewInvoiceButton);
+            return newInvoiceButton.Displayed;
+        }
     }
 }

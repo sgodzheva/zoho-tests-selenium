@@ -76,7 +76,7 @@ namespace Zoho.Tests.Selenium.Pages
             IWebElement termsDropdown = Wait.Until(findTermsDropdown);
             termsDropdown.Click();
 
-            By xPathDropdownOption = By.XPath($"//span[text()='{terms}']");
+            By xPathDropdownOption = By.XPath($"//div[@class='ac-dropdown-menu']//div[@title='{terms}']");
             Func<IWebDriver, IWebElement> findDropdownOption = ExpectedConditions.ElementIsVisible(xPathDropdownOption);
             IWebElement dropdownOption = Wait.Until(findDropdownOption);
             dropdownOption.Click();
@@ -104,10 +104,45 @@ namespace Zoho.Tests.Selenium.Pages
 
             return double.Parse(total.Text);
         }
+
         public void SaveAsDraft()
         {
             IWebElement saveAsDraftButton = driver.FindElement(By.XPath("//button[text()='Save as Draft']"));
             saveAsDraftButton.Click();
+        }
+
+        public bool IsSaveAsDraftButtonVisible()
+        {
+            By xPath = By.XPath("//button[text()='Save as Draft']");
+            Func<IWebDriver, IWebElement> findSaveAsDraftButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement saveAsDraftButton = Wait.Until(findSaveAsDraftButton);
+
+            return saveAsDraftButton.Displayed;
+        }
+
+        public void ClickCloseButton()
+        {
+            By xPath = By.XPath("//div[@class='header']/descendant::button[contains(@class,'close-details')]");
+            Func<IWebDriver, IWebElement> findCloseButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement closeButton = Wait.Until(findCloseButton);
+            closeButton.Click();
+        }
+
+        public void ClickLeaveButton()
+        {
+            By xPath = By.XPath("//div[@class='modal-footer']/child::button[text()='Leave & Discard Changes']");
+            Func<IWebDriver, IWebElement> findLeaveButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement leaveButton = Wait.Until(findLeaveButton);
+            leaveButton.Click();
+        }
+
+        public void ClickStayButton()
+        {
+            By xPtah = By.XPath("//div[@class='modal-footer']/child::button[text()='Stay Here']");
+            Func<IWebDriver, IWebElement> findStayButton = ExpectedConditions.ElementIsVisible(xPtah);
+            IWebElement stayButton = Wait.Until(findStayButton);
+
+            stayButton.Click();
         }
     }
 }
