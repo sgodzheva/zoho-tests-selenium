@@ -25,13 +25,41 @@ namespace Zoho.Tests.Selenium.Pages
             }
         }
 
-        public void SelectCustomer(string customerDisplayName)
+        public void ClickCustomerNameField()
         {
             By xPath = By.XPath("//span[text()='Select or add a customer']");
             Func<IWebDriver, IWebElement> findCustomerNameField = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement customerNameField = Wait.Until(findCustomerNameField);
             customerNameField.Click();
+        }
 
+        public void PopulateCustomerName(string name)
+        {
+            By xPathSearch = By.XPath("//div[@class='ac-search']//input[@placeholder='Search']");
+            Func<IWebDriver, IWebElement> findSearchField = ExpectedConditions.ElementIsVisible(xPathSearch);
+            IWebElement searchField = Wait.Until(findSearchField);
+            searchField.SendKeys(name);
+            Thread.Sleep(500);//wait some time for search results to appear
+        }
+
+        public bool IsAutoCompleteMessageDisplayed(string text)
+        {
+            By xPath = By.XPath($"//div[@class='autocomplete-option' and text()='{text}']");
+            Func<IWebDriver, IWebElement> findMessage = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement message = Wait.Until(findMessage);
+            return message.Displayed;
+        }
+
+        public string GetCustomerName()
+        {
+            By xPath = By.XPath($"//label[text()='Customer Name']/following::div/span/span");
+            Func<IWebDriver, IWebElement> findCustomerName = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement customerName = Wait.Until(findCustomerName);
+            return customerName.Text;
+        }
+
+        public void SelectCustomer(string customerDisplayName)
+        {
             By xPathDropdown = By.XPath($"//div[@title='{customerDisplayName}']");
             Func<IWebDriver, IWebElement> findDropdownOption = ExpectedConditions.ElementIsVisible(xPathDropdown);
             IWebElement dropdownOption = Wait.Until(findDropdownOption);

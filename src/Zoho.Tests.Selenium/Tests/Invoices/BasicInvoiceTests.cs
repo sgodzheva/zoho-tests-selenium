@@ -32,6 +32,8 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
 
             NewInvoicePage newInvoicePage = invoicesPage.AddNewInvoice();
             newInvoicePage.UseSimplifiedView();
+            newInvoicePage.ClickCustomerNameField();
+            newInvoicePage.PopulateCustomerName(displayName);
             newInvoicePage.SelectCustomer(displayName);
 
             string invoiceNumber = newInvoicePage.GetInvoiceNumber();

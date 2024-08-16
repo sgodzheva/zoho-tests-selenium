@@ -46,8 +46,7 @@ The number of items on the invoice should match the ones selected.
 The "Balance Due", the "Sub Total" and "Total" amounts should be the same and should be equal to the sum of all item amounts.
 
 ## TC-3 Test the closing feature of the "New Invoice Page"
-Preconditions:
-The user has an account and is logged in.
+Preconditions: The user has an account and is logged in.
 
 Test Case Steps:
 - Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
@@ -59,8 +58,7 @@ The user should be redirected to the "Invoices" page.
 The button for adding a new invoice should be visible on the screen.
 
 ## TC-4 Test interrupting the invoice creation by closing the "New Invoice Page"
-Preconditions:
-The user has an account and is logged in.
+Preconditions: The user has an account and is logged in.
 
 Test Case Steps:
 - Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
@@ -71,3 +69,30 @@ Expected Results:
 A notification pop-up should appear at the top of the screen asking:"Leave this page? If you leave, your unsaved changes will be discarded."
 By clicking on the "Leave & Discard Changes" button the customer should be redirected to the "Invoices" page.
 By clicking on the "Stay Here" button, the customer should stay on the "New Invoices" page and should be able to continue filling out the form.
+
+## TC-5 Test searching a customer ('Customer Name' field) that does not exist, when creating an invoice.
+Preconditions: The user has an account and is logged in.
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Click on the "+New" button
+- Click on the 'Customer Name' field
+- Enter an invalid customer name (e.g. "invalid-name")
+
+Expected Results:
+Below the search field, a message stating: "NO RESULTS FOUND" should be displayed.
+A 'New Customer' modal window should appear, when clicking anywhere on the screen.
+
+## TC-6 Test searching an existing customer ('Customer Name' field), when creating an invoice.
+Preconditions:
+The user has an account and is logged in.
+There should be an already created customer ("Individual").
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Click on the "+New" button
+- Click on the 'Customer Name' field
+- Enter an existing customer name (e.g. "Larson")
+
+Expected Result:
+The customer name should be displayed in the drop-down suggestions and the user should be able to select it.
