@@ -96,3 +96,28 @@ Test Case Steps:
 
 Expected Result:
 The customer name should be displayed in the drop-down suggestions and the user should be able to select it.
+
+## TC-7 Validate the format of the 'Invoice#', when creating a new invoice
+Preconditions:
+The user has an account and is logged in.
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Click on the "+New" button
+
+Expected Result:
+The "Invoice#" field should be filled with automatically generated invoice number in the format "INV-0000xx" (e.g. "INV-000036")
+
+## TC-8 Test creating an invoice without an invoice number
+Preconditions:
+The user has an account and is logged in.
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Click on the "+New" button
+- Delete the auto-generated number in the "Invoice#" field 
+- Click the "Safe as Draft" button
+
+Expected Results:
+A pop-up should appear, confirming invoice number preferences configuration.
+The invoice number should be automatically populated after closing the pop-up.

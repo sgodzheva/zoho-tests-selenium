@@ -75,6 +75,22 @@ namespace Zoho.Tests.Selenium.Pages
             return invoiceNumber.GetAttribute("value");
         }
 
+        public void ClearInvoiceNumber()
+        {
+            By xPath = By.XPath("//label[text()='Invoice#']/following-sibling::div/input");
+            Func<IWebDriver, IWebElement> findInvoiceNumber = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement invoiceNumber = Wait.Until(findInvoiceNumber);
+            invoiceNumber.Clear();
+        }
+
+        public void CloseInvoicePreferencesPopup()
+        {
+            By xPath = By.XPath("//div[contains(@class,'modal-dialog')]//span[contains(@class,'close')]");
+            Func<IWebDriver, IWebElement> findCloseButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement closeButton = Wait.Until(findCloseButton);
+            closeButton.Click();
+        }
+
         public DateTime GetInvoiceDate()
         {
             By xPath = By.XPath("//label[text()='Invoice Date']/following-sibling::div/input");
