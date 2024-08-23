@@ -116,8 +116,21 @@ Test Case Steps:
 - Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
 - Click on the "+New" button
 - Delete the auto-generated number in the "Invoice#" field 
-- Click the "Safe as Draft" button
+- Click the "Save as Draft" button
 
 Expected Results:
 A pop-up should appear, confirming invoice number preferences configuration.
 The invoice number should be automatically populated after closing the pop-up.
+
+## TC-9 Test creating an invoice without an "Invoice Date"
+Preconditions:
+The user has an account and is logged in.
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Click on the "+New" button
+- Delete the initial date in the "Invoice Date" field 
+- Click the "Save as Draft" button
+
+Expected Result:
+An error massage should appear, stating: "Choose a valid Invoice Date".

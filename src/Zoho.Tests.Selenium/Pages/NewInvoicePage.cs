@@ -102,6 +102,22 @@ namespace Zoho.Tests.Selenium.Pages
             return parsedInvoiceDateTime;
         }
 
+        public void ClearInvoiceDate()
+        {
+            By xPath = By.XPath("//label[text()='Invoice Date']/following-sibling::div/input");
+            Func<IWebDriver, IWebElement> findInvoiceDate = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement invoiceDate = Wait.Until(findInvoiceDate);
+            invoiceDate.Clear();
+        }
+
+        public bool IsErrorMessageVisible(string message)
+        {
+            By xPath = By.XPath($"//div[contains(@class,'alert')]/ul/li[@class='pe-4' and text()='{message}']");
+            Func<IWebDriver, IWebElement> findErrorMessage = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement errorMessage = Wait.Until(findErrorMessage);
+            return errorMessage.Displayed;
+        }
+
         public DateTime GetInvoiceDueDate()
         {
             By xPath = By.XPath("//p[text()='Due Date']/following::input");
