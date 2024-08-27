@@ -129,6 +129,14 @@ namespace Zoho.Tests.Selenium.Pages
             return parsedInvoiceDueDate;
         }
 
+        public void ClearInvoiceDueDate()
+        {
+            By xPath = By.XPath("//p[text()='Due Date']/following::input");
+            Func<IWebDriver, IWebElement> findInvoiceDueDate = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement invoiceDueDate = Wait.Until(findInvoiceDueDate);
+            invoiceDueDate.Clear();
+        }
+
         public void SelectTerms(string terms)
         {
             By xPath = By.XPath("//p[text()='Terms']/following::div[contains(@class,'payment-terms-selection')]");
