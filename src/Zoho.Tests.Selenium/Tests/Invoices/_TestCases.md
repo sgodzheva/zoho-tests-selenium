@@ -153,3 +153,18 @@ Test Case Steps:
 Expected results:
 The user is redirected to the "Invoices" page, where the newly created invoice is open.
 The "Due Date" is shown on the invoice and matches the "Invoice date".
+
+## Test creating an invoice without items
+Preconditions:
+The user has an account and is logged in.
+There should be an already created customer ("Individual")
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Click on the "+New" button
+- Select the "Use Simplified View" radio button
+- Choose a customer from the "Customer Name" drop-down menu (e.g. "Fisker, Agnetha")
+- Click the "Save as Draft" button  
+
+Expected Result:
+An error message should appear, stating: "Enter the valid item name or description.".
