@@ -168,3 +168,18 @@ Test Case Steps:
 
 Expected Result:
 An error message should appear, stating: "Enter the valid item name or description.".
+
+## Validate the removal of an item during an invoice creation
+Preconditions:
+The user has an account and is logged in.
+There should be an already created item ("Service").
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Click on the "+New" button
+- Select the "Use Simplified View" radio button
+- Choose an item from the drop-down menu, by clicking in the "Item Details" text field (e.g. "Sanity Testing Services, Rate:$75.00", "")
+- Delete the item, using the 'X' button (on the right side of the "Item Amount" column)
+
+Expected Result:
+The item should be removed from the "Item Table".

@@ -9,12 +9,14 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
     {
         private IWebDriver driver;
         private CustomersAutomation customersAutomation;
+        private ItemsAutomation itemsAutomation;
 
         [SetUp]
         public void SetUp()
         {
             driver = DriverFactory.CreateDriver();
             customersAutomation = new CustomersAutomation(driver);
+            itemsAutomation = new ItemsAutomation(driver);
         }
 
         [TestCase("Agnetha", "Fisker", "Fisker, Agnetha")]
@@ -30,6 +32,21 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
             newInvoicePage.SelectCustomer(displayName);
             newInvoicePage.SaveAsDraft();
             Assert.That(newInvoicePage.IsErrorMessageVisible("Enter the valid item name or description."), Is.True);
+        }
+
+        [TestCase("Sanity Testing Services", 75)]
+        public void TestItemRemoval(string itemName, double price)
+        {
+            itemsAutomation.CreateItem(itemName, price, ItemType.Service);
+
+            InvoicesPage invoicesPage = new InvoicesPage(driver);
+            invoicesPage.Open();
+            NewInvoicePage newInvoicePage = invoicesPage.AddNewInvoice();
+            newInvoicePage.UseSimplifiedView();
+            newInvoicePage.SelectItem(itemName);
+            newInvoicePage.DeleteItem(itemName);
+
+            Assert.That(newInvoicePage.IsItemVisible(itemName), Is.False);
         }
 
         [TearDown]

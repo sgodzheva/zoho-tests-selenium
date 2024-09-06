@@ -164,6 +164,29 @@ namespace Zoho.Tests.Selenium.Pages
             IWebElement nextLineItem = Wait.Until(findNextLineItem);
         }
 
+        public void DeleteItem(string itemName)
+        {
+            By xPath = By.XPath($"//tr//td//label[text()='{itemName}']//following::td[contains(@class,'item-amount')]//button[contains(@class,'icon-button')]");
+            Func<IWebDriver, IWebElement> findDeleteButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement deleteButton = Wait.Until(findDeleteButton);
+            deleteButton.Click();
+        }
+
+        public bool IsItemVisible(string itemName)
+        {
+            try
+            {
+                By xPath = By.XPath($"//label[text()='{itemName}']");
+                Func<IWebDriver, bool> findItemName = ExpectedConditions.InvisibilityOfElementLocated(xPath);
+                bool isInvisible = Wait.Until(findItemName); //true -> when not present on the screen 
+                return !isInvisible;
+            }
+            catch (WebDriverTimeoutException)
+            {
+                return true;
+            }
+        }
+
         public double GetTotal()
         {
             By xPath = By.XPath("//div[text()='Total']/following-sibling::div[contains(@class,'total-amount')]");
