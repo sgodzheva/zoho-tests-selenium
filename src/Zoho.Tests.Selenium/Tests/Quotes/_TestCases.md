@@ -1,4 +1,4 @@
-﻿## TC-1 Test a quote creation, by populating the most essential fields and using the simplified view
+﻿## TC-1 Test a quote creation, by populating the most essential fields, using the simplified view
 Preconditions:
 The user has an account and is logged in.
 There should be an already created customer("Individual") and an item("Service").

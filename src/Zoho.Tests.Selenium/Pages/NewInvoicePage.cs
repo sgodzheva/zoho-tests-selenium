@@ -196,6 +196,30 @@ namespace Zoho.Tests.Selenium.Pages
             return double.Parse(total.Text);
         }
 
+        public void AddItemsInBulk()
+        {
+            By xPath = By.XPath("//button[text()='Add Items in Bulk']");
+            Func<IWebDriver, IWebElement> findAddItemsInBulkButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement addItemsInBulkButton = Wait.Until(findAddItemsInBulkButton);
+            addItemsInBulkButton.Click();
+        }
+
+        public void SelectItemFromAddItemsInBulkModal(string itemName)
+        {
+            By xPath = By.XPath($"//ul[contains(@class,'ac-dropdown-results')]/li[contains(@class,'ac-option')]//div[@title='{itemName}']");
+            Func<IWebDriver, IWebElement> findItemListOption = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement itemListOption = Wait.Until(findItemListOption);
+            itemListOption.Click();
+        }
+
+        public void AddItems()
+        {
+            By xPath = By.XPath("//button[@type='submit' and text()='Add Items']");
+            Func<IWebDriver, IWebElement> findAddItemsButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement addItemsButton = Wait.Until(findAddItemsButton);
+            addItemsButton.Click();
+        }
+
         public void SaveAsDraft()
         {
             IWebElement saveAsDraftButton = driver.FindElement(By.XPath("//button[text()='Save as Draft']"));

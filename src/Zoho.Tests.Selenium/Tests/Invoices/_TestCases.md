@@ -135,7 +135,6 @@ Test Case Steps:
 Expected Result:
 An error massage should appear, stating: "Choose a valid Invoice Date".
 
-
 ## TC-10 Test creating an invoice without a "Due Date"
 Preconditions:
 The user has an account and is logged in.
@@ -154,7 +153,7 @@ Expected results:
 The user is redirected to the "Invoices" page, where the newly created invoice is open.
 The "Due Date" is shown on the invoice and matches the "Invoice date".
 
-## Test creating an invoice without items
+## TC-11 Test creating an invoice without items
 Preconditions:
 The user has an account and is logged in.
 There should be an already created customer ("Individual")
@@ -169,7 +168,7 @@ Test Case Steps:
 Expected Result:
 An error message should appear, stating: "Enter the valid item name or description.".
 
-## Validate the removal of an item during an invoice creation
+## TC-12 Validate the removal of an item during an invoice creation
 Preconditions:
 The user has an account and is logged in.
 There should be an already created item ("Service").
@@ -183,3 +182,19 @@ Test Case Steps:
 
 Expected Result:
 The item should be removed from the "Item Table".
+
+## TC-13 Test "Add Items in Bulk" feature at the "New Invoice" page. 
+Preconditions:
+The user has an account and is logged in.
+There should be already created items ("Service").
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Click on the "+New" button
+- Select the "Use Simplified View" radio button
+- Click on the "Add Items in Bulk" button
+- Select multiple items from the modal list (e.g. "Usability Testing Services 1, Rate:$400.00" & "Usability Testing Services 2, Rate:$400.00")
+- Click the "Add Items" button
+
+Expected Result:
+All items should appear as separate rows in the "Item Table".
