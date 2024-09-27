@@ -126,6 +126,14 @@ namespace Zoho.Tests.Selenium.Pages
             return double.Parse(trimmedBalanceDue);
         }
 
+        public string GetCustomerNotes()
+        {
+            By xPath = By.XPath("//p[@class='pcs-notes']");
+            Func<IWebDriver, IWebElement> findCustomerNotes = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement customerNotes = Wait.Until(findCustomerNotes);
+            return customerNotes.Text;
+        }
+
         public bool IsNewInvoiceButtonVisible()
         {
             By xPath = By.XPath("//button[text()='New']");

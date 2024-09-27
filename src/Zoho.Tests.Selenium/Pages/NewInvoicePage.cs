@@ -220,6 +220,15 @@ namespace Zoho.Tests.Selenium.Pages
             addItemsButton.Click();
         }
 
+        public void PopulateCustomerNotes(string note)
+        {
+            By xPath = By.XPath("//textarea[@aria-label='Customer Notes']");
+            Func<IWebDriver, IWebElement> findTextField = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement textField = Wait.Until(findTextField);
+            textField.Clear();
+            textField.SendKeys(note);
+        }
+
         public void SaveAsDraft()
         {
             IWebElement saveAsDraftButton = driver.FindElement(By.XPath("//button[text()='Save as Draft']"));
