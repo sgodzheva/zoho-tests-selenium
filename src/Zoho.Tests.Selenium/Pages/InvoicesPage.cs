@@ -134,6 +134,14 @@ namespace Zoho.Tests.Selenium.Pages
             return customerNotes.Text;
         }
 
+        public string GetTermsAndConditions()
+        {
+            By xPath = By.XPath("//p[@class='pcs-terms']");
+            Func<IWebDriver, IWebElement> findTermsAndConsitions = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement termsAndConditions = Wait.Until(findTermsAndConsitions);
+            return termsAndConditions.Text;
+        }
+
         public bool IsNewInvoiceButtonVisible()
         {
             By xPath = By.XPath("//button[text()='New']");

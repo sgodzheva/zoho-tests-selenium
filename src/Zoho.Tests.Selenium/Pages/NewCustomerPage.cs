@@ -49,7 +49,7 @@ namespace Zoho.Tests.Selenium.Pages
 
         public void SelectCustomerDisplayName(string displayName)
         {
-            IWebElement dropdown = driver.FindElement(By.XPath("//label[span/text()='Customer Display Name']/following-sibling::div//div[contains(@class,'ac-dropdown')]"));
+            IWebElement dropdown = driver.FindElement(By.XPath("//label[span/text()='Display Name']/following-sibling::div//div[contains(@class,'ac-dropdown')]"));
             dropdown.Click();
 
             By xpath = By.XPath($"//div[@title='{displayName}']");

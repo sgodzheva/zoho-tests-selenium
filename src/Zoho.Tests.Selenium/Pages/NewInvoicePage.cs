@@ -229,6 +229,22 @@ namespace Zoho.Tests.Selenium.Pages
             textField.SendKeys(note);
         }
 
+        public void AddTermsAndConditions()
+        {
+            By xPath = By.XPath("//button[text()='Add Terms and conditions']");
+            Func<IWebDriver, IWebElement> findAddTermsAndConditionsButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement addTermsAndConditionsButton = Wait.Until(findAddTermsAndConditionsButton);
+            addTermsAndConditionsButton.Click();
+        }
+
+        public void PopulateTermsAndConditions(string text)
+        {
+            By xPath = By.XPath("//label[text()='Terms & Conditions']/following::div/textarea");
+            Func<IWebDriver, IWebElement> findTextField = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement textField = Wait.Until(findTextField);
+            textField.SendKeys(text);
+        }
+
         public void SaveAsDraft()
         {
             IWebElement saveAsDraftButton = driver.FindElement(By.XPath("//button[text()='Save as Draft']"));
