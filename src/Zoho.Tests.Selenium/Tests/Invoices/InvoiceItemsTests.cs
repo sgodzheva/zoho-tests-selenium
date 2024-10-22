@@ -46,7 +46,7 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
             newInvoicePage.SelectItem(itemName);
             newInvoicePage.DeleteItem(itemName);
 
-            Assert.That(newInvoicePage.IsItemVisible(itemName), Is.False);
+            Assert.That(newInvoicePage.IsItemNotPresent(itemName), Is.True);
         }
 
         [TearDown]

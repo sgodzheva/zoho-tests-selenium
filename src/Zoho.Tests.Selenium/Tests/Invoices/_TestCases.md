@@ -216,7 +216,7 @@ Test Case Steps:
 Expected Result:
 The note should be visible at the bottom of the newly created invoice under the header "Notes".
 
-## TC-14 Test adding "Terms & Conditions", when creating an invoice.
+## TC-15 Test adding "Terms & Conditions", when creating an invoice.
 Preconditions:
 The user has an account and is logged in.
 There should be an already created customer ("Individual") and item ("Service").
@@ -232,3 +232,18 @@ Test Case Steps:
 
 Expected Result:
 The text, should be visible at the bottom of the newly created invoice under the header "Terms & Conditions".
+
+## TC-16 Test changing the "Customer Name" of an existing invoice ("Edit Invoice" function)
+Precondition:
+The user has an account and is logged in.
+There should be an already created item ("Service") and two customers ("Individual").
+There should be an already created invoice with customer ("Individual") and item ("Service")
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Select an invoice
+- Select new "Customer Name" (e.g. change "Sigurdsson, Gustav" to "Hansson, Laurence")
+- Click the "Save as Draft" button  
+
+Expected Result:
+The updated name should be displayed under "Bill to".

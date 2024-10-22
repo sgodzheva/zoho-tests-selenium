@@ -21,7 +21,7 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
             itemsAutomation = new ItemsAutomation(driver);
         }
 
-        [TestCase("Fredrik", "Bergfalk", "Bergfalk, Fredrik", "Exploratory Testing Services", 140, "Due on Receipt")]
+        [TestCase("Fredrik", "Bergfalk", "Bergfalk, Fredrik", "Exploratory Testing Services", 140, "Due On Receipt")]
         public void TestBasicInvoiceCreation(string firstName, string lastName, string displayName, string itemName, double price, string terms)
         {
             customersAutomation.CreateCustomer(firstName, lastName, displayName);

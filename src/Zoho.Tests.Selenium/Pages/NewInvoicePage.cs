@@ -27,7 +27,7 @@ namespace Zoho.Tests.Selenium.Pages
 
         public void ClickCustomerNameField()
         {
-            By xPath = By.XPath("//span[text()='Select or add a customer']");
+            By xPath = By.XPath("//label[text()='Customer Name']/following::div//div[contains(@class,'ac-selected')]");
             Func<IWebDriver, IWebElement> findCustomerNameField = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement customerNameField = Wait.Until(findCustomerNameField);
             customerNameField.Click();
@@ -52,7 +52,7 @@ namespace Zoho.Tests.Selenium.Pages
 
         public string GetCustomerName()
         {
-            By xPath = By.XPath($"//label[text()='Customer Name']/following::div/span/span");
+            By xPath = By.XPath($"//label[text()='Customer Name']/following::div//div[contains(@class,'ac-selected')]/span");
             Func<IWebDriver, IWebElement> findCustomerName = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement customerName = Wait.Until(findCustomerName);
             return customerName.Text;
@@ -177,13 +177,28 @@ namespace Zoho.Tests.Selenium.Pages
             try
             {
                 By xPath = By.XPath($"//label[text()='{itemName}']");
-                Func<IWebDriver, bool> findItemName = ExpectedConditions.InvisibilityOfElementLocated(xPath);
-                bool isInvisible = Wait.Until(findItemName); //true -> when not present on the screen 
-                return !isInvisible;
+                Func<IWebDriver, IWebElement> findItemName = ExpectedConditions.ElementIsVisible(xPath);
+                IWebElement item = Wait.Until(findItemName); //true -> when not present on the screen 
+                return true;
             }
             catch (WebDriverTimeoutException)
             {
-                return true;
+                return false;
+            }
+        }
+
+        public bool IsItemNotPresent(string itemName)
+        {
+            try
+            {
+                By xPath = By.XPath($"//label[text()='{itemName}']");
+                Func<IWebDriver, bool> findItemName = ExpectedConditions.InvisibilityOfElementLocated(xPath);
+                bool isInvisible = Wait.Until(findItemName); //true -> when not present on the screen 
+                return isInvisible;
+            }
+            catch (WebDriverTimeoutException)
+            {
+                return false;
             }
         }
 
@@ -283,6 +298,12 @@ namespace Zoho.Tests.Selenium.Pages
             IWebElement stayButton = Wait.Until(findStayButton);
 
             stayButton.Click();
+        }
+
+        public void ClickSaveButton()
+        {
+            IWebElement saveButton = driver.FindElement(By.XPath("//button[text()='Save']"));
+            saveButton.Click();
         }
     }
 }

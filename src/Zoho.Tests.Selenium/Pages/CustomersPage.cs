@@ -67,7 +67,6 @@ namespace Zoho.Tests.Selenium.Pages
             searchField.Click();
             searchField.SendKeys(displayName);
             searchField.SendKeys(Keys.Enter);
-
         }
 
         public bool SelectCustomer(string displayName)

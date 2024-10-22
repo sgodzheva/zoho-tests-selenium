@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
 namespace Zoho.Tests.Selenium.Pages
@@ -148,6 +149,53 @@ namespace Zoho.Tests.Selenium.Pages
             Func<IWebDriver, IWebElement> findNewInvoiceButton = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement newInvoiceButton = Wait.Until(findNewInvoiceButton);
             return newInvoiceButton.Displayed;
+        }
+
+        public void WaitToLoad()
+        {
+            By xPath = By.XPath("//span[text()='All Invoices']");
+            Func<IWebDriver, IWebElement> findText = ExpectedConditions.ElementIsVisible(xPath);
+            Wait.Until(findText);
+        }
+
+        public void SearchForInvoice(string invoiceNumber)
+        {
+            By xPath = By.XPath("//input[@placeholder='Search in Invoices ( / )']");
+            Func<IWebDriver, IWebElement> findSearchField = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement searchField = Wait.Until(findSearchField);
+            searchField.Click();
+            searchField.SendKeys(invoiceNumber);
+            searchField.SendKeys(Keys.Enter);
+        }
+
+        public bool SelectInvoice(string invoiceNumber)
+        {
+            try
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+                By xPath = By.XPath($"//a[text()='{invoiceNumber}']");
+                Func<IWebDriver, IWebElement> findInvoiceResult = ExpectedConditions.ElementIsVisible(xPath);
+                IWebElement invoiceResult = Wait.Until(findInvoiceResult);
+                invoiceResult.Click();
+                return true;
+
+            }
+            catch (WebDriverTimeoutException)
+            {
+
+                return false;
+            }
+        }
+
+        public NewInvoicePage ClickEditButton()
+        {
+            By xPath = By.XPath("//span[@class='ps-1' and text()='Edit']");
+            Func<IWebDriver, IWebElement> findEditButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement editButton = Wait.Until(findEditButton);
+            editButton.Click();
+
+            NewInvoicePage newInvoicePage = new NewInvoicePage(driver);
+            return newInvoicePage;
         }
     }
 }

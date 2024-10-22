@@ -38,7 +38,7 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
 
             for (int i = 1; i <= itemsNumber; i++)
             {
-                Assert.That(newInvoicePage.IsItemVisible($"{itemName} {i}"), Is.False);
+                Assert.That(newInvoicePage.IsItemVisible($"{itemName} {i}"), Is.True);
             }
         }
 
