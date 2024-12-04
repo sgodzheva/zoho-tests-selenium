@@ -30,7 +30,9 @@ namespace Zoho.Tests.Selenium.Pages
 
         public void PopulateUsername(string username)
         {
-            IWebElement emailField = Wait.Until(d => d.FindElement(By.Id("login_id")));
+            By xPath = By.Id("login_id");
+            Func<IWebDriver, IWebElement> findEmailField = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement emailField = Wait.Until(findEmailField);
             emailField.SendKeys(username);
 
             IWebElement nextButton = driver.FindElement(By.Id("nextbtn"));

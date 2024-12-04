@@ -76,7 +76,7 @@ namespace Zoho.Tests.Selenium.Pages
 
         public SignOutPage ClickSignOutButton()
         {
-            By xPath = By.XPath("//a[@class='signout']");
+            By xPath = By.XPath("//a[contains(@class,'signout')]");
             Func<IWebDriver, IWebElement> findSignOutButton = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement signOutButton = Wait.Until(findSignOutButton);
             signOutButton.Click();

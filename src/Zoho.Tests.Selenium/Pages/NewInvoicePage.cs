@@ -143,7 +143,6 @@ namespace Zoho.Tests.Selenium.Pages
             Func<IWebDriver, IWebElement> findTermsDropdown = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement termsDropdown = Wait.Until(findTermsDropdown);
             termsDropdown.Click();
-
             By xPathDropdownOption = By.XPath($"//div[@class='ac-dropdown-menu']//div[@title='{terms}']");
             Func<IWebDriver, IWebElement> findDropdownOption = ExpectedConditions.ElementIsVisible(xPathDropdownOption);
             IWebElement dropdownOption = Wait.Until(findDropdownOption);
