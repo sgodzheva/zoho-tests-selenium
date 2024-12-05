@@ -234,7 +234,7 @@ Expected Result:
 The text, should be visible at the bottom of the newly created invoice under the header "Terms & Conditions".
 
 ## TC-16 Test changing the "Customer Name" of an existing invoice ("Edit Invoice" function)
-Precondition:
+Preconditions:
 The user has an account and is logged in.
 There should be an already created item ("Service") and two customers ("Individual").
 There should be an already created invoice with customer ("Individual") and item ("Service")
@@ -247,3 +247,22 @@ Test Case Steps:
 
 Expected Result:
 The updated name should be displayed under "Bill to".
+
+## TC-17 Test deleting an existing invoice
+Preconditions:
+The user has an account and is logged in.
+There should be an already created customer ("Individual") and an item ("Service").
+There should be an already created invoice with the customer ("Individual") and the item ("Service")
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Select an invoice by using the checkbox
+- Delete the invoice from the kebab menu
+- Click the "OK" button on the alert pop-up
+
+Expected Results:
+A confirmation message should appear at the top of the screen stating:"The selected invoices have been deleted."
+The deleted invoice should not be present in the "All Invoices" table.
+When searching the invoice number in the search field:
+- The search dropdown should display: "No results found"
+- The "All Invoices" table should display: "There are no invoices"

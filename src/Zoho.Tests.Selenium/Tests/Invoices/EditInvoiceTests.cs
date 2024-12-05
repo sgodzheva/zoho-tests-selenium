@@ -9,17 +9,13 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
     {
         private IWebDriver driver;
         private CustomersAutomation customersAutomation;
-        private ItemsAutomation itemsAutomation;
         private InvoicesAutomation invoicesAutomation;
-
-
 
         [SetUp]
         public void SetUp()
         {
             driver = DriverFactory.CreateDriver();
             customersAutomation = new CustomersAutomation(driver);
-            itemsAutomation = new ItemsAutomation(driver);
             invoicesAutomation = new InvoicesAutomation(driver);
         }
 

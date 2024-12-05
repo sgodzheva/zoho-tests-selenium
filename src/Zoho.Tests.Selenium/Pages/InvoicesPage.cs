@@ -167,6 +167,13 @@ namespace Zoho.Tests.Selenium.Pages
             searchField.SendKeys(invoiceNumber);
             searchField.SendKeys(Keys.Enter);
         }
+        public bool IsTableEmpty()
+        {
+            By xPath = By.XPath("//tr[@class='empty-list']/td/h4[text()='There are no invoices']");
+            Func<IWebDriver, IWebElement> findTableResult = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement tableResult = Wait.Until(findTableResult);
+            return true;
+        }
 
         public bool SelectInvoice(string invoiceNumber)
         {
@@ -185,6 +192,35 @@ namespace Zoho.Tests.Selenium.Pages
 
                 return false;
             }
+        }
+
+        public void SelectInvoiceCheckbox(string invoiceNumber)
+        {
+            By xPath = By.XPath($"//input[@aria-label='Select Invoice {invoiceNumber}']");
+            Func<IWebDriver, IWebElement> findCheckbox = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement checkbox = Wait.Until(findCheckbox);
+            checkbox.Click();
+        }
+
+        public void ClickKebabMenu()
+        {
+            By xPath = By.XPath("//div[contains(@class,'btn-toolbar')]//button[contains(@class,'dropdown-toggle')]");
+            Func<IWebDriver, IWebElement> findKebabMenu = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement kebabMenu = Wait.Until(findKebabMenu);
+            kebabMenu.Click();
+        }
+
+        public void DeleteInvoiceFromKebabMenu()
+        {
+            By xPath = By.XPath("//button[text()='Delete']");
+            Func<IWebDriver, IWebElement> findDeleteButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement deleteButton = Wait.Until(findDeleteButton);
+            deleteButton.Click();
+
+            By okButtonPopupXPath = By.XPath("//button[text()='OK']");
+            Func<IWebDriver, IWebElement> findOkButton = ExpectedConditions.ElementIsVisible(okButtonPopupXPath);
+            IWebElement okButton = Wait.Until(findOkButton);
+            okButton.Click();
         }
 
         public NewInvoicePage ClickEditButton()
