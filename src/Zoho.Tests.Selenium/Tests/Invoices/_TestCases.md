@@ -261,8 +261,26 @@ Test Case Steps:
 - Click the "OK" button on the alert pop-up
 
 Expected Results:
-A confirmation message should appear at the top of the screen stating:"The selected invoices have been deleted."
+A confirmation message should appear at the top of the screen stating: "The selected invoices have been deleted."
 The deleted invoice should not be present in the "All Invoices" table.
 When searching the invoice number in the search field:
 - The search dropdown should display: "No results found"
 - The "All Invoices" table should display: "There are no invoices"
+
+## TC-18 Test changing the status of an invoice from "Draft" to "Void"
+Preconditions:
+The user has an account and is logged in.
+There should be an already created customer ("Individual") and an item ("Service").
+There should be an already created invoice with the customer ("Individual") and the item ("Service")
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Click on an invoice from the "All Invoices" table
+- Click on the kebab navigation menu button and select the "Void" option
+- Enter a text (for voiding the invoice) in the text field on the alert pop-up (e.g. "The invoice was issued to the wrong customer.")
+- Click the "Void it" button
+
+Expected Results:
+A confirmation message should appear at the top of the screen stating: "Invoice status has been changed to Void."
+The invoice status should be "Void".
+The invoice cannot be edited. The edit button from the navigation menu should not be visible.

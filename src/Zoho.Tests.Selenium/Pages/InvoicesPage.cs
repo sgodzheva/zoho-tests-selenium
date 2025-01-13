@@ -182,7 +182,7 @@ namespace Zoho.Tests.Selenium.Pages
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
                 By xPath = By.XPath($"//a[text()='{invoiceNumber}']");
                 Func<IWebDriver, IWebElement> findInvoiceResult = ExpectedConditions.ElementIsVisible(xPath);
-                IWebElement invoiceResult = Wait.Until(findInvoiceResult);
+                IWebElement invoiceResult = wait.Until(findInvoiceResult);
                 invoiceResult.Click();
                 return true;
 
@@ -223,7 +223,7 @@ namespace Zoho.Tests.Selenium.Pages
             okButton.Click();
         }
 
-        public NewInvoicePage ClickEditButton()
+        public NewInvoicePage ClickEditButtonSelectedInvoice()
         {
             By xPath = By.XPath("//span[@class='ps-1' and text()='Edit']");
             Func<IWebDriver, IWebElement> findEditButton = ExpectedConditions.ElementIsVisible(xPath);
@@ -232,6 +232,62 @@ namespace Zoho.Tests.Selenium.Pages
 
             NewInvoicePage newInvoicePage = new NewInvoicePage(driver);
             return newInvoicePage;
+        }
+
+        public bool IsEditButtonVisible()
+        {
+            try
+            {
+                By xPath = By.XPath("//span[@class='ps-1' and text()='Edit']");
+                Func<IWebDriver, IWebElement> findEditButton = ExpectedConditions.ElementIsVisible(xPath);
+                IWebElement editButton = Wait.Until(findEditButton);
+                return editButton.Displayed;
+            }
+            catch (WebDriverTimeoutException)
+            {
+                return false;
+            }
+        }
+
+        public void ClickKebabMenuSelectedInvoice()
+        {
+            By xPath = By.XPath("//ul[contains(@class,'details-menu-bar')]/li[6]/button[contains(@class,'dropdown-toggle')]");
+            Func<IWebDriver, IWebElement> findKebabMenuSelectedInvoice = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement kebabMenuSelectedInvoice = Wait.Until(findKebabMenuSelectedInvoice);
+            kebabMenuSelectedInvoice.Click();
+        }
+
+        public void ClickKebabMenuVoidButton()
+        {
+            By xPath = By.XPath("//button[text()='Void']");
+            Func<IWebDriver, IWebElement> findVoidButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement voidButton = Wait.Until(findVoidButton);
+            voidButton.Click();
+        }
+
+        public void PopulateTextForVoidingInvoice(string text)
+        {
+            By xPath = By.XPath("//div[contains(@class,'form-group')]/textarea");
+            Func<IWebDriver, IWebElement> findTextField = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement textField = Wait.Until(findTextField);
+            textField.Click();
+            textField.SendKeys(text);
+        }
+
+        public void ClickVoidItButton()
+        {
+            By xPath = By.XPath("//button[text()='Void it']");
+            Func<IWebDriver, IWebElement> findVoidItButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement voidItButton = Wait.Until(findVoidItButton);
+            voidItButton.Click();
+        }
+
+        public bool IsInvoiceVoided()
+        {
+            By xPath = By.XPath("//div[contains(@class,'ribbon-inner') and contains(text(),'Void')]");
+            Func<IWebDriver, IWebElement> findVoidRibbon = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement voidRibbon = Wait.Until(findVoidRibbon);
+            return voidRibbon.Displayed;
         }
     }
 }

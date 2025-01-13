@@ -39,7 +39,7 @@ namespace Zoho.Tests.Selenium.Tests.Invoices
             invoicesPage.SearchForInvoice(invoiceNumber);
             Thread.Sleep(1000);
             invoicesPage.SelectInvoice(invoiceNumber);
-            NewInvoicePage editInvoicePage = invoicesPage.ClickEditButton();
+            NewInvoicePage editInvoicePage = invoicesPage.ClickEditButtonSelectedInvoice();
             Thread.Sleep(1000);
 
             Assert.That(editInvoicePage.GetCustomerName(), Is.EqualTo(displayName));
