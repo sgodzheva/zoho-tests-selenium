@@ -284,3 +284,4 @@ Expected Results:
 A confirmation message should appear at the top of the screen stating: "Invoice status has been changed to Void."
 The invoice status should be "Void".
 The invoice cannot be edited. The edit button from the navigation menu should not be visible.
+

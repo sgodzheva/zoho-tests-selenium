@@ -50,3 +50,18 @@ Test Case Steps:
 
 Expected Result:
 On the "Customers" page, results should only include the searched "Display Name".
+
+## TC-4 Test marking an existing active customer as "Inactive"
+Preconditions: 
+The user has an account and is logged in.
+There should be an already created customer ("Individual")
+
+Test Case Steps:
+- Open the "Customers" page: https://invoice.zohocloud.ca/app/110000477898#/contacts
+- Select a customer by using the checkbox
+- Click on the kebab navigation menu button and select the "Mark as Inactive" option
+
+Expected Results:
+A confirmation message should appear at the top of the screen stating: "The selected contacts have been marked as inactive."
+The inactive customer should have an "Inactive" status in the "All Customers" table.
+The inactive customer should disappear from the "Active Customers" table and should be visible in the "Inactive Customers" table.

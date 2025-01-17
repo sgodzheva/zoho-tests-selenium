@@ -111,5 +111,37 @@ namespace Zoho.Tests.Selenium.Pages
             IWebElement popupDeleteButton = Wait.Until(findPopupDeleteButton);
             popupDeleteButton.Click();
         }
+
+        public void SelectCustomerCheckbox(string displayName)
+        {
+            By xPath = By.XPath($"//td/a[text()='{displayName}']/parent::td/preceding-sibling::td/input[@type='checkbox']");
+            Func<IWebDriver, IWebElement> findCustomerCheckbox = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement customerCheckbox = Wait.Until(findCustomerCheckbox);
+            customerCheckbox.Click();
+        }
+
+        public void ClickKebabMenu()
+        {
+            By xPath = By.XPath("//div[contains(@class,'btn-toolbar')]//button[contains(@class,'dropdown-toggle')]");
+            Func<IWebDriver, IWebElement> findKebabMenu = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement kebabMenu = Wait.Until(findKebabMenu);
+            kebabMenu.Click();
+        }
+
+        public void MarkAsInactiveFromKebabMenu()
+        {
+            By xPath = By.XPath("//button[text()='Mark as Inactive']");
+            Func<IWebDriver, IWebElement> findMarkAsInactiveButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement markAsInactiveButton = Wait.Until(findMarkAsInactiveButton);
+            markAsInactiveButton.Click();
+        }
+
+        public bool IsMarkAsActiveButtonDisplayed()
+        {
+            By xPath = By.XPath("//button[text()='Mark as Active']");
+            Func<IWebDriver, IWebElement> findMarkAsActiveButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement markAsActiveButton = Wait.Until(findMarkAsActiveButton);
+            return markAsActiveButton.Displayed;
+        }
     }
 }
