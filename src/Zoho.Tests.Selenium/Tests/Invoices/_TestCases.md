@@ -285,3 +285,17 @@ A confirmation message should appear at the top of the screen stating: "Invoice 
 The invoice status should be "Void".
 The invoice cannot be edited. The edit button from the navigation menu should not be visible.
 
+## TC-19 Test creating an invoice with an inactive customer
+Preconditions:
+The user has an account and is logged in.
+There should be an already created inactive customer ("Individual")
+
+Test Case Steps:
+- Open the "Invoices" page: https://invoice.zohocloud.ca/app/110000477898#/invoices
+- Click on the "+New" button
+- Click on the 'Customer Name' field
+- Enter the inactive customer name (e.g. "Vinter, Linn")
+
+Expected Results:
+Below the search field, a message stating: "NO RESULTS FOUND" should be displayed.
+A 'New Customer' modal window should appear, when clicking anywhere on the screen.
