@@ -65,3 +65,21 @@ Expected Results:
 A confirmation message should appear at the top of the screen stating: "The selected contacts have been marked as inactive."
 The inactive customer should have an "Inactive" status in the "All Customers" table.
 The inactive customer should disappear from the "Active Customers" table and should be visible in the "Inactive Customers" table.
+
+## TC-5 Test writing a comment for an existing customer
+Preconditions:
+The user has an account and is logged in.
+There should be an already created customer ("Individual")
+
+Test Case Steps:
+- Open the "Customers" page: https://invoice.zohocloud.ca/app/110000477898#/contacts
+- Select a customer
+- Click on the "Comments" button from the navigation menu
+- Enter a comment in the text field (e.g. "Customer contacted for payment reminder.")
+- Click on the "Add Comment" button
+
+Expected Results:
+A confirmation message should appear at the top of the screen stating: "Comments added"
+The comment should be added to the "All Comments" section in the same menu.
+The comment date should match the published date in the format: "yyyy/mm/dd hh:mm PM"
+The comment should be added to the "History" section under the "Overview" menu button. 

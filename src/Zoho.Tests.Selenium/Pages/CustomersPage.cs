@@ -143,5 +143,50 @@ namespace Zoho.Tests.Selenium.Pages
             IWebElement markAsActiveButton = Wait.Until(findMarkAsActiveButton);
             return markAsActiveButton.Displayed;
         }
+
+        public void ClickCommentsButton()
+        {
+            By xPath = By.XPath("//a[text()='Comments']");
+            Func<IWebDriver, IWebElement> findCommentsButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement commentsButton = Wait.Until(findCommentsButton);
+            commentsButton.Click();
+        }
+
+        public void PopulateCustomerComment(string comment)
+        {
+            By xPath = By.XPath("//div[contains(@class,'add-comment-text-area')]//p");
+            Func<IWebDriver, IWebElement> findTextArea = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement textArea = Wait.Until(findTextArea);
+            textArea.Click();
+            textArea.SendKeys($"{comment}");
+        }
+
+        public void ClickAddCommentButton()
+        {
+            By xPath = By.XPath("//button[text()='Add Comment']");
+            Func<IWebDriver, IWebElement> findAddCommentButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement addCommentButton = Wait.Until(findAddCommentButton);
+            addCommentButton.Click();
+        }
+
+        public string GetTopCustomerCommentFromCommentTab()
+        {
+            By xPath = By.XPath("//div[@class='zfrc-preview']//p[1]");
+            Func<IWebDriver, IWebElement> findTopComment = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement topComment = Wait.Until(findTopComment);
+            return topComment.Text;
+        }
+
+        public DateTime GetTopCommentDateFromCommentTab()
+        {
+
+            By xPath = By.XPath("//div[contains(@class,'comments-history')]/ul/li[1]//span[contains(@class,'date-formatted')]");
+            Func<IWebDriver, IWebElement> findTopCommentDate = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement topCommentDate = Wait.Until(findTopCommentDate);
+            string topCommentDateValue = topCommentDate.Text;
+
+            DateTime parsedTopCommentDateValue = DateTime.Parse(topCommentDateValue);
+            return parsedTopCommentDateValue;
+        }
     }
 }
