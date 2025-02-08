@@ -118,5 +118,44 @@ namespace Zoho.Tests.Selenium.Pages
             IWebElement popupDeleteButton = Wait.Until(findPopupDeleteButton);
             popupDeleteButton.Click();
         }
+
+        public void ClickHistoryTab()
+        {
+            By xPath = By.XPath("//ul[contains(@class,'nav-tabs')]//a[text()='History']");
+            Func<IWebDriver, IWebElement> findHistoryTab = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement historyTab = Wait.Until(findHistoryTab);
+            historyTab.Click();
+        }
+
+        public DateTime GetTopEntryDateFromHistoryTab()
+        {
+            By xPath = By.XPath("//div[contains(@class,'tab-pane')]//tbody/tr[1]/td[@class='text-muted']");
+            Func<IWebDriver, IWebElement> findTopEntryDate = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement topEntryDate = Wait.Until(findTopEntryDate);
+            string topEntryDateValue = topEntryDate.Text;
+
+            DateTime parsedTopEntryDateValue = DateTime.Parse(topEntryDateValue);
+            return parsedTopEntryDateValue;
+        }
+
+        public string GetTopEntryDetailsText()
+        {
+            By xPath = By.XPath("//div[contains(@class,'tab-pane')]//tbody/tr[1]/td[2]");
+            Func<IWebDriver, IWebElement> findTopEntryDetailsText = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement topEntryDetailsText = Wait.Until(findTopEntryDetailsText);
+            string trimmedText = topEntryDetailsText.Text.Split('-')[0].Trim();
+            return trimmedText;
+        }
+
+        public NewItemPage ClickEditButton()
+        {
+            By xPath = By.XPath("//div[@class='btn-toolbar']/div[@class='btn-group']/button");
+            Func<IWebDriver, IWebElement> findEditButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement editButton = Wait.Until(findEditButton);
+            editButton.Click();
+
+            NewItemPage newItemPage = new NewItemPage(driver);
+            return newItemPage;
+        }
     }
 }

@@ -48,10 +48,17 @@ namespace Zoho.Tests.Selenium.Pages
         {
             IWebElement saveButton = driver.FindElement(By.XPath("//button[text()='Save']"));
             saveButton.Click();
+        }
 
-            By xPath = By.XPath("//span[text()='The item has been added.']");
-            Func<IWebDriver, IWebElement> findSuccessPopup = ExpectedConditions.ElementIsVisible(xPath);
-            Wait.Until(findSuccessPopup);
+
+        public void UpdateSellingPrice(double price)
+        {
+            By xPath = By.XPath("//label[span/span[text()='Selling Price']]/following-sibling::div//input");
+            Func<IWebDriver, IWebElement> findSellingPriceField = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement sellingPriceField = Wait.Until(findSellingPriceField);
+            sellingPriceField.Click();
+            sellingPriceField.Clear();
+            sellingPriceField.SendKeys(price.ToString());
         }
     }
 }

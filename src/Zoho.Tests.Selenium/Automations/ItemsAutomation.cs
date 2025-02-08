@@ -36,5 +36,17 @@ namespace Zoho.Tests.Selenium.Automations
                 newItemPage.SaveItem();
             }
         }
+
+        public void DeleteItem(string itemName)
+        {
+            ItemsPage itemsPage = new ItemsPage(driver);
+            itemsPage.Open();
+            if (itemsPage.SelectItem(itemName))
+            {
+                itemsPage.ClickMoreOptionsButton();
+                itemsPage.ClickDeleteButton();
+                itemsPage.ClickDeletePopupConfirmation();
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using Zoho.Tests.Selenium.Automations;
 using Zoho.Tests.Selenium.Pages;
 
 namespace Zoho.Tests.Selenium.Tests.Items
@@ -7,30 +8,19 @@ namespace Zoho.Tests.Selenium.Tests.Items
     public class ServiceTypeItemTests
     {
         private IWebDriver driver;
+        private ItemsAutomation itemsAutomation;
 
         [SetUp]
         public void SetUp()
         {
             driver = DriverFactory.CreateDriver();
-        }
-
-        public void CleanUp(string itemName)
-        {
-            ItemsPage itemsPage = new ItemsPage(driver);
-            itemsPage.Open();
-
-            if (itemsPage.SelectItem(itemName))
-            {
-                itemsPage.ClickMoreOptionsButton();
-                itemsPage.ClickDeleteButton();
-                itemsPage.ClickDeletePopupConfirmation();
-            }
+            itemsAutomation = new ItemsAutomation(driver);
         }
 
         [TestCase("End-to-end Testing Services", 100)]
         public void TestServiceTypeItemCreation(string itemName, double price)
         {
-            CleanUp(itemName);
+            itemsAutomation.DeleteItem(itemName);
 
             ItemsPage itemsPage = new ItemsPage(driver);
             itemsPage.Open();
@@ -56,8 +46,6 @@ namespace Zoho.Tests.Selenium.Tests.Items
 
             double itemSellingPrice = itemsPage.GetItemSellingPrice();
             Assert.That(itemSellingPrice, Is.EqualTo(price));
-
-            CleanUp(itemName);
         }
 
         [TearDown]

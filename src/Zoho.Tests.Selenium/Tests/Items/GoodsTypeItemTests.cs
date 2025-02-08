@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using Zoho.Tests.Selenium.Automations;
 using Zoho.Tests.Selenium.Pages;
 
 namespace Zoho.Tests.Selenium.Tests.Items
@@ -7,14 +8,16 @@ namespace Zoho.Tests.Selenium.Tests.Items
     public class GoodsTypeItemTests
     {
         private IWebDriver driver;
+        private ItemsAutomation itemsAutomation;
 
         [SetUp]
         public void SetUp()
         {
             driver = DriverFactory.CreateDriver();
+            itemsAutomation = new ItemsAutomation(driver);
         }
 
-        public void CleanUp(string itemName)
+        /*public void CleanUp(string itemName)
         {
             ItemsPage itemsPage = new ItemsPage(driver);
             itemsPage.Open();
@@ -24,12 +27,12 @@ namespace Zoho.Tests.Selenium.Tests.Items
                 itemsPage.ClickDeleteButton();
                 itemsPage.ClickDeletePopupConfirmation();
             }
-        }
+        }*/
 
         [TestCase("Canon PIXMA TS3720 All-in-One Printer", 59.97)]
         public void TestGoodsTypeItemCreation(string itemName, double price)
         {
-            CleanUp(itemName);
+            itemsAutomation.DeleteItem(itemName);
 
             ItemsPage itemsPage = new ItemsPage(driver);
             itemsPage.Open();
@@ -55,8 +58,6 @@ namespace Zoho.Tests.Selenium.Tests.Items
 
             double itemSellingPrice = itemsPage.GetItemSellingPrice();
             Assert.That(itemSellingPrice, Is.EqualTo(price));
-
-            CleanUp(itemName);
         }
 
 
