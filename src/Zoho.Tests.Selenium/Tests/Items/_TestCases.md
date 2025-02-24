@@ -6,7 +6,7 @@ Test Case Steps:
 - Click on the "+New" button
 - Select the "Goods" radio button
 - Populate the item's name in the "Name" field (e.g. "Canon PIXMA TS3720 All-in-One Printer")
-- Populate an amount in the "Selling Price" field (e.g. "59.97")
+- Populate the "Selling Price" field with an amount (e.g. "59.97")
 - Click the "Save" button
 
 Expected Results:
@@ -25,7 +25,7 @@ Test Case Steps:
 - Click on the "+New" button
 - Select the "Service" radio button
 - Populate the item's name in the "Name" field (e.g. "End-to-end Testing Services")
-- Populate an amount in the "Selling Price" field (e.g. "100")
+- Populate the "Selling Price" field with an amount (e.g. "100")
 - Click the "Save" button
 
 Expected Results:

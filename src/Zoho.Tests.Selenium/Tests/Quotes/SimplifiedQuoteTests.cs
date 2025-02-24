@@ -5,7 +5,7 @@ using Zoho.Tests.Selenium.Pages;
 
 namespace Zoho.Tests.Selenium.Tests.Quotes
 {
-    public class BasicQuoteTests
+    public class SimplifiedQuoteTests
     {
         private IWebDriver driver;
         private CustomersAutomation customersAutomation;
