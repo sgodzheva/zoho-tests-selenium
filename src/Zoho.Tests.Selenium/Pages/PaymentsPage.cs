@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 namespace Zoho.Tests.Selenium.Pages
 
@@ -107,6 +108,55 @@ namespace Zoho.Tests.Selenium.Pages
 
             double parsedAmount = double.Parse(trimmedAmount);
             return parsedAmount;
+        }
+
+        public void WaitToLoad()
+        {
+            By xPath = By.XPath("//span[text()='All Received Payments']");
+            Func<IWebDriver, IWebElement> findText = ExpectedConditions.ElementIsVisible(xPath);
+            Wait.Until(findText);
+        }
+
+        public bool SelectPayment(string paymentNumber)
+        {
+            try
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+                By xPath = By.XPath($"//span[text()={paymentNumber}]");
+                Func<IWebDriver, IWebElement> findPayment = ExpectedConditions.ElementIsVisible(xPath);
+                IWebElement payment = Wait.Until(findPayment);
+                payment.Click();
+                return true;
+            }
+            catch (WebDriverTimeoutException)
+            {
+
+                return false;
+            }
+        }
+
+        public void ClickKebabMenu()
+        {
+            By xPtah = By.XPath("//ul[contains(@class,'details-menu-bar')]/li[4]//button[contains(@class,'dropdown-toggle')]");
+            Func<IWebDriver, IWebElement> findKebabMenu = ExpectedConditions.ElementIsVisible(xPtah);
+            IWebElement kebabMenu = Wait.Until(findKebabMenu);
+            kebabMenu.Click();
+        }
+
+        public void DeletePaymentFromKebabMenu()
+        {
+            By xPath = By.XPath("//button[text()='Delete']");
+            Func<IWebDriver, IWebElement> findDeleteButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement deleteButton = Wait.Until(findDeleteButton);
+            deleteButton.Click();
+        }
+
+        public void ClickOkButton()
+        {
+            By xPath = By.XPath("//button[text()='OK']");
+            Func<IWebDriver, IWebElement> findOkButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement okButton = Wait.Until(findOkButton);
+            okButton.Click();
         }
     }
 }

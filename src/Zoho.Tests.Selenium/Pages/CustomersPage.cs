@@ -25,7 +25,7 @@ namespace Zoho.Tests.Selenium.Pages
 
         public NewCustomerPage AddNewCustomer()
         {
-            By xPath = By.XPath("//button[text()='New']");
+            By xPath = By.XPath("//span[text()='New']");
             Func<IWebDriver, IWebElement> findNewCustomerButton = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement newCustomerButton = Wait.Until(findNewCustomerButton);
             newCustomerButton.Click();

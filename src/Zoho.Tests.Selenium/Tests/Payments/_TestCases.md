@@ -19,4 +19,22 @@ The "Payment Mode" should match the default option, during the customer payment 
 The customer name under "Received From" should match the selected name during the creation.
 The Payment Receipt should display a field called "Over Payment" with the used amount during the creation. This amount should be equal to the one in the "Amount Received" field.
 
+## TC-2 Test deleting an existing payment receipt
+Preconditions:
+The user has an account and is logged in.
+There should be an already created customer ("Individual") 
+There should be an already created payment receipt for that customer.
+
+Test Case Steps:
+- Open the "Payments Received" page: https://invoice.zohocloud.ca/app/110000477898#/paymentsreceived
+- Select the payment receipt from the table by clicking on it
+- Click on the kebab menu button from the navigation 
+- Click the "Delete" button
+- Click the "OK" button on the alert pop-up
+
+Expected Results:
+A confirmation message should appear at the top of the screen stating: "The payment has been deleted"
+The deleted payment should not appear in the "All Received Payments" table.
+
+
 

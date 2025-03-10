@@ -167,6 +167,7 @@ namespace Zoho.Tests.Selenium.Pages
             searchField.SendKeys(invoiceNumber);
             searchField.SendKeys(Keys.Enter);
         }
+
         public bool IsTableEmpty()
         {
             By xPath = By.XPath("//tr[@class='empty-list']/td/h4[text()='There are no invoices']");
