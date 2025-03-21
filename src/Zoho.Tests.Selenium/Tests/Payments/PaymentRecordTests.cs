@@ -53,7 +53,7 @@ namespace Zoho.Tests.Selenium.Tests.Payments
 
             Assert.That(paymentsPage.IsBalanceTypeVisible("Over payment"), Is.True);
 
-            double balanceAmount = paymentsPage.GetBalanceAmount();
+            double balanceAmount = paymentsPage.GetBalanceAmount("Over payment");
             Assert.That(balanceAmount, Is.EqualTo(amountReceived));
         }
 

@@ -98,9 +98,9 @@ namespace Zoho.Tests.Selenium.Pages
 
         }
 
-        public double GetBalanceAmount()
+        public double GetBalanceAmount(string balanceTypeName)
         {
-            By xPath = By.XPath("//p[text()='Over payment']/following-sibling::div");
+            By xPath = By.XPath($"//p[text()='{balanceTypeName}']/following-sibling::div");
             Func<IWebDriver, IWebElement> findBalanceAmount = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement balanceAmount = Wait.Until(findBalanceAmount);
 
@@ -122,7 +122,7 @@ namespace Zoho.Tests.Selenium.Pages
             try
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
-                By xPath = By.XPath($"//span[text()={paymentNumber}]");
+                By xPath = By.XPath($"//a[text()='{paymentNumber}']");
                 Func<IWebDriver, IWebElement> findPayment = ExpectedConditions.ElementIsVisible(xPath);
                 IWebElement payment = Wait.Until(findPayment);
                 payment.Click();
@@ -151,12 +151,80 @@ namespace Zoho.Tests.Selenium.Pages
             deleteButton.Click();
         }
 
+        public void ClickRefundButton()
+        {
+            By xPath = By.XPath("//button[text()='Refund']");
+            Func<IWebDriver, IWebElement> findRefundButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement refundButton = Wait.Until(findRefundButton);
+            refundButton.Click();
+        }
+
         public void ClickOkButton()
         {
             By xPath = By.XPath("//button[text()='OK']");
             Func<IWebDriver, IWebElement> findOkButton = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement okButton = Wait.Until(findOkButton);
             okButton.Click();
+        }
+
+        public void ClickRefundTypeField()
+        {
+            By xPath = By.XPath("//label[text()='Refund Type']/following::div");
+            Func<IWebDriver, IWebElement> findDropdown = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement dropDown = Wait.Until(findDropdown);
+            dropDown.Click();
+        }
+
+        public void SelectExcessAmountRefundType()
+        {
+            By xPath = By.XPath("//div[text()='Excess Amount Refund']");
+            Func<IWebDriver, IWebElement> findExcessAmount = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement excessAmount = Wait.Until(findExcessAmount);
+            excessAmount.Click();
+        }
+
+        public void PopulateAmount(double amount)
+        {
+            By xPath = By.XPath("//label[text()='Amount']//following::span[text()='CAD']/following::input");
+            Func<IWebDriver, IWebElement> findField = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement field = Wait.Until(findField);
+            field.Click();
+            field.SendKeys(Keys.Control + 'a');
+            field.SendKeys(Keys.Delete);
+            field.SendKeys(amount.ToString());
+        }
+
+        public void ClickSaveButton()
+        {
+            By xPath = By.XPath("//button[text()='Save']");
+            Func<IWebDriver, IWebElement> findSaveButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement saveButton = Wait.Until(findSaveButton);
+            saveButton.Click();
+        }
+
+        public void CloseActivePaymentReceipt()
+        {
+            By xPath = By.XPath("//button[@aria-label='Close']");
+            Func<IWebDriver, IWebElement> findCloseButton = ExpectedConditions.ElementIsVisible(xPath);
+            IWebElement closeButton = Wait.Until(findCloseButton);
+            closeButton.Click();
+        }
+
+        public bool IsUnusedAmountZero(string paymentNumber)
+        {
+            try
+            {
+                By xPath = By.XPath($"//td/following::a[text()='{paymentNumber}']/following::td[text()='$0.00']");
+                Func<IWebDriver, IWebElement> findUnusedAmount = ExpectedConditions.ElementIsVisible(xPath);
+                IWebElement unusedAmount = Wait.Until(findUnusedAmount);
+                return unusedAmount.Displayed;
+            }
+            catch (WebDriverTimeoutException)
+            {
+
+                return false;
+            }
+
         }
     }
 }
