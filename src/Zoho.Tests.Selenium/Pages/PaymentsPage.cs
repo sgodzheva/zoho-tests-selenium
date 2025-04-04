@@ -137,7 +137,7 @@ namespace Zoho.Tests.Selenium.Pages
 
         public void ClickKebabMenu()
         {
-            By xPtah = By.XPath("//ul[contains(@class,'details-menu-bar')]/li[4]//button[contains(@class,'dropdown-toggle')]");
+            By xPtah = By.XPath("//ul[contains(@class,'details-menu-bar')]/li[7]//button[contains(@class,'dropdown-toggle')]");
             Func<IWebDriver, IWebElement> findKebabMenu = ExpectedConditions.ElementIsVisible(xPtah);
             IWebElement kebabMenu = Wait.Until(findKebabMenu);
             kebabMenu.Click();
@@ -165,22 +165,6 @@ namespace Zoho.Tests.Selenium.Pages
             Func<IWebDriver, IWebElement> findOkButton = ExpectedConditions.ElementIsVisible(xPath);
             IWebElement okButton = Wait.Until(findOkButton);
             okButton.Click();
-        }
-
-        public void ClickRefundTypeField()
-        {
-            By xPath = By.XPath("//label[text()='Refund Type']/following::div");
-            Func<IWebDriver, IWebElement> findDropdown = ExpectedConditions.ElementIsVisible(xPath);
-            IWebElement dropDown = Wait.Until(findDropdown);
-            dropDown.Click();
-        }
-
-        public void SelectExcessAmountRefundType()
-        {
-            By xPath = By.XPath("//div[text()='Excess Amount Refund']");
-            Func<IWebDriver, IWebElement> findExcessAmount = ExpectedConditions.ElementIsVisible(xPath);
-            IWebElement excessAmount = Wait.Until(findExcessAmount);
-            excessAmount.Click();
         }
 
         public void PopulateAmount(double amount)
@@ -224,7 +208,22 @@ namespace Zoho.Tests.Selenium.Pages
 
                 return false;
             }
+        }
 
+        public void ClickPdfPrintButton()
+        {
+            By xpath = By.XPath("//span[text()='PDF/Print']");
+            Func<IWebDriver, IWebElement> findPdfPrintButton = ExpectedConditions.ElementIsVisible(xpath);
+            IWebElement pdfPrintButton = Wait.Until(findPdfPrintButton);
+            pdfPrintButton.Click();
+        }
+
+        public void ClickPdfButton()
+        {
+            By xpath = By.XPath("//button[text()='PDF']");
+            Func<IWebDriver, IWebElement> findPdfButton = ExpectedConditions.ElementIsVisible(xpath);
+            IWebElement pdfButton = Wait.Until(findPdfButton);
+            pdfButton.Click();
         }
     }
 }

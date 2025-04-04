@@ -8,14 +8,12 @@ namespace Zoho.Tests.Selenium.Tests.Payments
     public class RefundPaymentTests
     {
         private IWebDriver driver;
-        private CustomersAutomation customersAutomation;
         private PaymentsAutomation paymentsAutomation;
 
         [SetUp]
         public void SetUp()
         {
             driver = DriverFactory.CreateDriver();
-            customersAutomation = new CustomersAutomation(driver);
             paymentsAutomation = new PaymentsAutomation(driver);
         }
 
@@ -29,8 +27,6 @@ namespace Zoho.Tests.Selenium.Tests.Payments
             paymentsPage.SelectPayment(paymentNumber);
             paymentsPage.ClickKebabMenu();
             paymentsPage.ClickRefundButton();
-            paymentsPage.ClickRefundTypeField();
-            paymentsPage.SelectExcessAmountRefundType();
             paymentsPage.PopulateAmount(amount);
             paymentsPage.ClickSaveButton();
 

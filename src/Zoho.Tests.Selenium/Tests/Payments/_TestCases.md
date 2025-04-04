@@ -47,7 +47,6 @@ Test Case Steps:
 - Select the payment receipt from the table by clicking on it
 - Click on the kebab menu button from the navigation 
 - Click the "Refund" button
-- Select "Excess Amount Refund" option from the "Refund Type" dropdown
 - Enter the amount in the "Amount" field (e.g. "400") -  it should match excess amount
 - Click the "Save" button
 
@@ -57,4 +56,17 @@ The Payment Receipt should display a field called "Payment Refund" with the used
 A "Refund History" section should appear on the active payment receipt.
 In the "All Received Payments" Table the "Unused Amount" for the payment should be "0". 
 
+# TC-4 Test downloading a payment receipt
+Preconditions: 
+The user has an account and is logged in.
+There should be an already created customer ("Individual") 
+There should be an already created payment receipt for that customer.
 
+Test Case Steps:
+- Open the "Payments Received" page: https://invoice.zohocloud.ca/app/110000477898#/paymentsreceived
+- Select the payment receipt from the table by clicking on it
+- Click on the "Print/PDF" button form the navigation
+- Select the "PDF" option
+
+Expected Result:
+The ".pdf" document should be present in the "Downloads" folder on the computer (e.g. "C:\Users\admin\Downloads")

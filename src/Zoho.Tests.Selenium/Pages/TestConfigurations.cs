@@ -41,5 +41,10 @@
         {
             return ReadEnvironmentVariable("ZOHO_TESTS_BROWSER");
         }
+
+        public static string GetDownloadLocation()
+        {
+            return ReadEnvironmentVariable("ZOHO_TESTS_DOWNLOADS");
+        }
     }
 }
